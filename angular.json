@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-pwa-app": {
+    "verify-tours-available": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-pwa-app",
+            "outputPath": "dist/verify-tours-available",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -27,7 +27,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.scss"
@@ -48,7 +49,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
@@ -62,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-pwa-app:build:production"
+              "buildTarget": "verify-tours-available:build:production"
             },
             "development": {
-              "buildTarget": "angular-pwa-app:build:development"
+              "buildTarget": "verify-tours-available:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "angular-pwa-app:build"
+            "buildTarget": "verify-tours-available:build"
           }
         },
         "test": {
@@ -87,7 +89,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.scss"

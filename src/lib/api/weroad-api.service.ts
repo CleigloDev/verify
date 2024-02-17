@@ -14,7 +14,7 @@ export class WeroadApiService {
     if(!iframe) {
       return of([]);
     }
-    // iframe.src = `${URL}/${tourId}/tours`;
+    iframe.src = `${URL}/${tourId}/tours`;
     const tours = localStorage.getItem('tours');
     if(!tours) return of([]);
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, ReplaySubject, combineLatest, switchMap } from 'rxjs';
+import { BehaviorSubject, EMPTY, ReplaySubject, catchError, switchMap } from 'rxjs';
 import { WeroadApiService } from '../../lib/api';
 import { computeRouterParams } from '../../lib/common';
 
@@ -11,13 +11,15 @@ export class WeroadService {
   private _fetchToursSubject$ = new BehaviorSubject<void>(undefined);
   private tourId$ = new ReplaySubject<string>(1);
 
-  tours$ = combineLatest([
-    this._fetchToursSubject$,
-    this.tourId$,
-  ]).pipe(
-    switchMap(([_, tourId]) =>
-      this.weroadApiService.listTours(tourId)
-    ),
+  tours$ = this.tourId$.pipe(
+    switchMap((tourId) => this._fetchToursSubject$.pipe(
+      switchMap(_ => {
+        return this.weroadApiService.listTours(tourId);
+      }),
+    )),
+    catchError(_ => {
+      return EMPTY;
+    }),
   );
   
   constructor(

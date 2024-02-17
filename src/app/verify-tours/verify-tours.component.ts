@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, map, shareReplay } from 'rxjs';
+import { BehaviorSubject, Observable, filter, map, shareReplay } from 'rxjs';
 import { Currency, Price, Status, Tours } from '../../lib/model';
 import { WeroadService } from '../service';
 
 @Component({
   selector: 'verify-tours',
   template: `
+    <h2>{{'Nome tour: '}} {{ tourName$ | async }}</h2>
     <div class="tour-container">
       <span>
         {{ 'Tours totali pubblicati: '}} {{ totalTours$ | async }}
@@ -72,6 +73,10 @@ export class VerifyToursComponent implements OnInit {
       return tours.filter(tour => tour.status === Status.AlmostConfirmed || tour.status === Status.Planned)
     }),
     map(tours => tours.length),
+  );
+  protected tourName$ = this.tours$.pipe(
+    filter(tours => tours.length > 0),
+    map(tours => tours[0].tourName),
   );
   
   constructor(

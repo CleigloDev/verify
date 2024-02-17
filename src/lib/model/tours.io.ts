@@ -29,10 +29,13 @@ export type ToursJson = {
   extra: {
     facebookGroupUrl: string;
   };
-  coordinator: {
-    firstName: string;
-    lastName: string;
+  coordinator?: {
+    firstName?: string;
+    lastName?: string;
   };
+  travel: {
+    title: string;
+  }
 };
 
 export type Tours = {
@@ -46,6 +49,7 @@ export type Tours = {
   facebookGroupUrl: string;
   coordinatorName: string;
   coordinatorLastName: string;
+  tourName: string;
 };
 
 export function deserializeToursJson(response: TourResponseJson): Tours[] {
@@ -62,8 +66,9 @@ export function deserializeToursJson(response: TourResponseJson): Tours[] {
       })),
       status: tours.salesStatus,
       facebookGroupUrl: tours.extra.facebookGroupUrl,
-      coordinatorName: tours.coordinator.firstName,
-      coordinatorLastName: tours.coordinator.lastName,
+      coordinatorName: tours.coordinator?.firstName || '',
+      coordinatorLastName: tours.coordinator?.lastName || '',
+      tourName: tours.travel.title,
     }
   })
 }

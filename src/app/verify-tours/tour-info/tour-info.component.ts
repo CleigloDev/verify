@@ -16,6 +16,13 @@ import { Currency, Price, Status, Tours } from '../../../lib/model';
         </div>
 
         <div class="column">
+          <h3>Data</h3>
+          <span>
+            {{ tour.startingDate }}/{{ tour.endingDate }}
+          </span>
+        </div>
+
+        <div class="column">
           <h3>Nome e cognome</h3>
           <span>
             {{tour.coordinatorName}} {{tour.coordinatorLastName}}

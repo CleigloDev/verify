@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" data-critters-container>
+<head>
+  <meta charset="utf-8">
+  <title>Verify Tours Maldive</title>
+  <base href="https://CleigloDev.github.io/verify/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="./assets/icons/icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
+<style>*{font-size:100%;font-family:sans-serif}
+</style><link rel="stylesheet" href="styles-J7VOQLGO.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-J7VOQLGO.css"></noscript><link rel="modulepreload" href="chunk-NFOYLJRS.js"></head>
+<body>
+  <app-root></app-root>
+  <script>
+    customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
+    static get observedAttributes() {
+      return ['src']
+    }
+    constructor () {
+      super()
+    }
+    attributeChangedCallback () {
+      this.load(this.src)
+    }
+    connectedCallback () {
+      this.sandbox = '' + this.sandbox || 'allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation' // all except allow-top-navigation
+    }
+    load (url) {
+      this.fetchProxy(url, 0).then(res => res.text()).then(data => {
+        if (data)
+          localStorage.setItem('tours', data);
+          this.srcdoc = data.replace(/<head([^>]*)>/i)
+      }).catch(e => console.error('Cannot load X-Frame-Bypass:', e))
+    }
+    fetchProxy (url, i) {
+      const proxies = 'https://corsproxy.io/?';
+      return fetch(proxies + url).then(res => {
+        if (!res.ok)
+          throw new Error(`${res.status} ${res.statusText}`);
+        return res
+      }).catch(error => {
+        console.error(error);
+      });
+    }
+  }, {extends: 'iframe'})
+  </script>
+  <iframe id="data-tours" is="x-frame-bypass" hidden></iframe>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+<script src="polyfills-RT5I6R6G.js" type="module"></script><script src="main-GJCEA3B4.js" type="module"></script></body>
+</html>

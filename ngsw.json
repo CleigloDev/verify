@@ -1,0 +1,69 @@
+{
+  "configVersion": 1,
+  "timestamp": 1708205184079,
+  "index": "https://CleigloDev.github.io/verify/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://CleigloDev.github.io/verify/chunk-NFOYLJRS.js",
+        "https://CleigloDev.github.io/verify/chunk-QTJL7H7L.js",
+        "https://CleigloDev.github.io/verify/favicon.ico",
+        "https://CleigloDev.github.io/verify/index.html",
+        "https://CleigloDev.github.io/verify/main-GJCEA3B4.js",
+        "https://CleigloDev.github.io/verify/manifest.webmanifest",
+        "https://CleigloDev.github.io/verify/polyfills-RT5I6R6G.js",
+        "https://CleigloDev.github.io/verify/styles-J7VOQLGO.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://CleigloDev.github.io/verify/assets/icons/icon.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://CleigloDev.github.io/verify/assets/icons/icon.png": "24b3fe3981fcd84ad03764bfd201c9285bc42fb4",
+    "https://CleigloDev.github.io/verify/chunk-NFOYLJRS.js": "b612dca6b2376021a4099397ef288f23bd4cadd7",
+    "https://CleigloDev.github.io/verify/chunk-QTJL7H7L.js": "0cc13ff6abb2495f5c9fb7cbf026d9f239a45d1c",
+    "https://CleigloDev.github.io/verify/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "https://CleigloDev.github.io/verify/index.html": "7962d0fa0731cb1481d58fd80f189e002f3b8957",
+    "https://CleigloDev.github.io/verify/main-GJCEA3B4.js": "fce2c9acf5b702bdada1f957ca8133b9783a883f",
+    "https://CleigloDev.github.io/verify/manifest.webmanifest": "acb1e0094ea3c5236246d68c4b592410672a217f",
+    "https://CleigloDev.github.io/verify/polyfills-RT5I6R6G.js": "fe9f024576f21ff6314cf8f8332cde58b9a12416",
+    "https://CleigloDev.github.io/verify/styles-J7VOQLGO.css": "629edc5b769cb52df2395fe2b03569cf1defdbbf"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

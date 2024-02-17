@@ -4,7 +4,7 @@ import { Tours, deserializeToursJson } from '../model/tours.io';
 
 const URL: string = 'https://api-catalog.weroad.it/travels';
 
-export const DEFAULT_TOUR = 'cile-bolivia-weroadx';
+export const DEFAULT_TOUR = 'maldive-beach-life-weroadx';
 
 @Injectable({
   providedIn: 'root',

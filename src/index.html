@@ -25,32 +25,22 @@
     connectedCallback () {
       this.sandbox = '' + this.sandbox || 'allow-forms allow-modals allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation' // all except allow-top-navigation
     }
-    load (url, options) {
-      if (!url || !url.startsWith('http'))
-        throw new Error(`X-Frame-Bypass src ${url} does not start with http(s)://`)
-      console.log('X-Frame-Bypass loading:', url)
- 
-      this.fetchProxy(url, options, 0).then(res => res.text()).then(data => {
+    load (url) {
+      this.fetchProxy(url, 0).then(res => res.text()).then(data => {
         if (data)
-          console.log(data);
           localStorage.setItem('tours', data);
           this.srcdoc = data.replace(/<head([^>]*)>/i)
       }).catch(e => console.error('Cannot load X-Frame-Bypass:', e))
     }
-    fetchProxy (url, options, i) {
-      const proxies = (options || {}).proxies || [
-        'https://corsproxy.io/?'
-      ]
-      return fetch(proxies[i] + url, options).then(res => {
+    fetchProxy (url, i) {
+      const proxies = 'https://corsproxy.io/?';
+      return fetch(proxies + url).then(res => {
         if (!res.ok)
           throw new Error(`${res.status} ${res.statusText}`);
-        console.log(res);
         return res
       }).catch(error => {
-        if (i === proxies.length - 1)
-          throw error
-        return this.fetchProxy(url, options, i + 1)
-      })
+        console.error(error);
+      });
     }
   }, {extends: 'iframe'})
   </script>

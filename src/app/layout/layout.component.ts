@@ -4,7 +4,9 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   standalone: true,
   selector: 'layout.component.ts',
-  template: ``,
+  template: `
+    <router-outlet></router-outlet>
+  `,
   styleUrls: ['./layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet],

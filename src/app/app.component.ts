@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   standalone: true,
+  selector: 'app-root',
   template: `
     <router-outlet></router-outlet>
   `,
   imports: [RouterOutlet],
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'verify-tours-available';

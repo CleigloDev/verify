@@ -1,0 +1,25 @@
+.tour-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-container {
+  display: flex;
+  margin-top: 10px;
+}
+
+.refresh-tours {
+  margin-right: 20px;
+}
+
+.tour-table {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 170px;
+}

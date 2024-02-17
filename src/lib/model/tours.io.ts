@@ -9,7 +9,8 @@ export enum Status {
 };
 
 export type Price = {
-  [key in Currency]: number;
+  currency: Currency,
+  price: number;
 }
 
 export type TourResponseJson = {
@@ -55,13 +56,10 @@ export function deserializeToursJson(response: TourResponseJson): Tours[] {
       startingDate: tours.startingDate,
       endingDate: tours.endingDate,
       ageBadge: tours.ageBadge,
-      price: Object.keys(tours.price).map(key => {
-        const price = {
-          [key]: tours.price[key as Currency]
-        } as Price;
-
-        return price;
-      }),
+      price: Object.keys(tours.price).map(key => ({
+        currency: key as Currency,
+        price: tours.price[key as Currency],
+      })),
       status: tours.salesStatus,
       facebookGroupUrl: tours.extra.facebookGroupUrl,
       coordinatorName: tours.coordinator.firstName,

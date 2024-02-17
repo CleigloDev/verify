@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, ReplaySubject, combineLatest, distinctUntilChanged, switchMap } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, combineLatest, switchMap } from 'rxjs';
 import { WeroadApiService } from '../../lib/api';
 import { computeRouterParams } from '../../lib/common';
 
@@ -15,7 +15,6 @@ export class WeroadService {
     this._fetchToursSubject$,
     this.tourId$,
   ]).pipe(
-    distinctUntilChanged(),
     switchMap(([_, tourId]) =>
       this.weroadApiService.listTours(tourId)
     ),

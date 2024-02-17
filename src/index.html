@@ -29,36 +29,11 @@
       if (!url || !url.startsWith('http'))
         throw new Error(`X-Frame-Bypass src ${url} does not start with http(s)://`)
       console.log('X-Frame-Bypass loading:', url)
-      this.srcdoc = `<html>
-  <head>
-    <style>
-    .loader {
-      position: absolute;
-      top: calc(50% - 25px);
-      left: calc(50% - 25px);
-      width: 50px;
-      height: 50px;
-      background-color: #333;
-      border-radius: 50%;  
-      animation: loader 1s infinite ease-in-out;
-    }
-    @keyframes loader {
-      0% {
-      transform: scale(0);
-      }
-      100% {
-      transform: scale(1);
-      opacity: 0;
-      }
-    }
-    </style>
-  </head>
-  <body>
-    <div class="loader"></div>
-  </body>
-  </html>`
+ 
       this.fetchProxy(url, options, 0).then(res => res.text()).then(data => {
         if (data)
+          console.log(data);
+          localStorage.setItem('tours', data);
           this.srcdoc = data.replace(/<head([^>]*)>/i)
       }).catch(e => console.error('Cannot load X-Frame-Bypass:', e))
     }
@@ -69,6 +44,7 @@
       return fetch(proxies[i] + url, options).then(res => {
         if (!res.ok)
           throw new Error(`${res.status} ${res.statusText}`);
+        console.log(res);
         return res
       }).catch(error => {
         if (i === proxies.length - 1)
@@ -78,6 +54,7 @@
     }
   }, {extends: 'iframe'})
   </script>
+  <iframe id="data-tours" is="x-frame-bypass" hidden></iframe>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
 </html>

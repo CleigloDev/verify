@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { WeroadService } from '../service';
 import { VerifyToursComponent } from './verify-tours.component';
 
 export const ROUTES: Routes = [
@@ -15,6 +16,7 @@ export const ROUTES: Routes = [
     CommonModule,
     RouterModule.forChild(ROUTES),
   ],
+  providers: [WeroadService],
   declarations: [VerifyToursComponent],
   exports: [VerifyToursComponent],
 })

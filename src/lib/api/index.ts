@@ -1,1 +1,2 @@
-export { WeroadApiService } from './weroad-api.service';
+export { DEFAULT_TOUR, WeroadApiService } from './weroad-api.service';
+

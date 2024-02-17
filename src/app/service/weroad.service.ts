@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, EMPTY, ReplaySubject, catchError, switchMap } from 'rxjs';
-import { WeroadApiService } from '../../lib/api';
+import { BehaviorSubject, EMPTY, ReplaySubject, catchError, distinctUntilChanged, switchMap } from 'rxjs';
+import { DEFAULT_TOUR, WeroadApiService } from '../../lib/api';
 import { computeRouterParams } from '../../lib/common';
 
 const WEROAD_ID = 'WEROAD_ID';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class WeroadService {
   private _fetchToursSubject$ = new BehaviorSubject<void>(undefined);
-  private tourId$ = new ReplaySubject<string>(1);
+  private _tourId$ = new ReplaySubject<string>(1);
 
-  tours$ = this.tourId$.pipe(
+  tours$ = this._tourId$.pipe(
+    distinctUntilChanged(),
     switchMap((tourId) => this._fetchToursSubject$.pipe(
       switchMap(_ => {
         return this.weroadApiService.listTours(tourId);
@@ -21,6 +24,8 @@ export class WeroadService {
       return EMPTY;
     }),
   );
+
+  tourId$ = this._tourId$.asObservable();
   
   constructor(
     private weroadApiService: WeroadApiService,
@@ -29,10 +34,14 @@ export class WeroadService {
 
   init() {
     const params = computeRouterParams(this.route.snapshot);
-    this.tourId$.next(params[WEROAD_ID]);
+    this._tourId$.next(params[WEROAD_ID] || DEFAULT_TOUR);
   }
 
   refreshTours() {
     this._fetchToursSubject$.next();
+  }
+
+  updateTourId(tourId: string) {
+    this._tourId$.next(tourId);
   }
 }

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -10,6 +10,14 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet],
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'verify-tours-available';
+
+  constructor(
+    private router: Router,
+  ){}
+
+  ngOnInit(): void {
+    this.router.navigate(['/verify-tours']);
+  }
 }

@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { WeroadService } from '../service';
+import { ExistingToursComponent } from './existing-tour-action/existing-tour-action.component';
+import { TourIdComponent } from './tour-id/tour-id.component';
+import { TourInfoComponent } from './tour-info/tour-info.component';
 import { VerifyToursComponent } from './verify-tours.component';
 
 export const ROUTES: Routes = [
@@ -15,8 +18,11 @@ export const ROUTES: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),
+    ReactiveFormsModule,
+    TourIdComponent,
+    ExistingToursComponent,
+    TourInfoComponent,
   ],
-  providers: [WeroadService],
   declarations: [VerifyToursComponent],
   exports: [VerifyToursComponent],
 })
